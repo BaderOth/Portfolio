@@ -1,280 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bader Othman | Career Portfolio</title>
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #3E8E41;
-      --bg: #fafafa;
-      --card: #ffffff;
-      --text: #333333;
-      --shadow: rgba(0, 0, 0, 0.1);
-    }
-    *, *::before, *::after { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: 'Fira Code', monospace;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-    }
-    a { color: var(--primary); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    /* Nav */
-    nav {
-      position: sticky;
-      top: 0;
-      background: var(--card);
-      box-shadow: 0 2px 4px var(--shadow);
-      padding: 1rem;
-      z-index: 100;
-      display: flex;
-      justify-content: center;
-    }
-    .nav-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      max-width: 1200px;
-      position: relative;
-    }
-    .nav-container {
-      display: flex;
-      gap: 1.5rem;
-      margin: 0 auto;
-    }
-    .nav-container a { 
-      padding: 0.5rem; 
-      transition: color 0.3s; 
-      white-space: nowrap;
-    }
-    .nav-container a:hover { color: var(--primary); }
-    .nav-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 0.4rem;
-      cursor: pointer;
-      z-index: 101;
-      position: absolute;
-      left: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    .nav-toggle span { 
-      display: block; 
-      width: 24px; 
-      height: 3px; 
-      background: var(--text); 
-      transition: transform 0.3s, opacity 0.3s;
-    }
-
-    /* Sidebar */
-    .sidebar {
-      position: fixed;
-      top: 0; 
-      left: 0;
-      height: 100%; 
-      width: 250px;
-      background: var(--card);
-      padding: 5rem 1.5rem 1.5rem;
-      transform: translateX(-100%);
-      transition: transform 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      box-shadow: 2px 0 6px var(--shadow);
-      z-index: 99;
-    }
-    .sidebar a {
-      padding: 0.75rem;
-      border-radius: 4px;
-      transition: background 0.3s;
-    }
-    .sidebar a:hover {
-      background: rgba(62, 142, 65, 0.1);
-    }
-    .sidebar.open { transform: translateX(0); }
-    
-    /* Toggle animation */
-    .nav-toggle.open span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
-    }
-    .nav-toggle.open span:nth-child(2) {
-      opacity: 0;
-    }
-    .nav-toggle.open span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
-    }
-
-    /* Overlay */
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      z-index: 98;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s, visibility 0.3s;
-    }
-    .overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    /* Hero */
-    header {
-      text-align: center;
-      padding: 4rem 1rem;
-      background: var(--card);
-      box-shadow: 0 1px 3px var(--shadow);
-    }
-    .profile-img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 1rem;
-      border: 3px solid var(--primary);
-    }
-    header h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 0.5rem; }
-    header p { font-size: 1rem; color: var(--text); }
-    .btn {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.75rem 1.5rem;
-      border: 2px solid var(--primary);
-      border-radius: 4px;
-      background: transparent;
-      color: var(--primary);
-      transition: background 0.3s, color 0.3s;
-    }
-    .btn:hover { background: var(--primary); color: #fff; }
-
-    /* Sections */
-    .container { max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
-    section + section { margin-top: 3rem; }
-    section h2 {
-      font-size: 1.8rem;
-      color: var(--primary);
-      margin-bottom: 1rem;
-      position: relative;
-    }
-    section h2::after {
-      content: '';
-      position: absolute;
-      width: 50px; height: 3px;
-      background: var(--primary);
-      bottom: -5px; left: 0;
-    }
-
-    /* Grid & Cards */
-    .grid {
-      display: grid;
-      gap: 1.5rem;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    }
-    .card {
-      background: var(--card);
-      padding: 1.5rem;
-      border-radius: 6px;
-      box-shadow: 0 2px 6px var(--shadow);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 12px var(--shadow);
-    }
-    .card h3 { font-size: 1.2rem; margin-bottom: 0.75rem; color: var(--primary); }
-    .card p, .card li { font-size: 0.95rem; color: var(--text); margin-bottom: 0.5rem; }
-    .visual-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-    .visual-item {
-      text-align: center;
-    }
-    .visual-item img {
-      max-width: 100%;
-      border-radius: 4px;
-      border: 1px solid #eee;
-    }
-
-    /* Contact Form */
-    .contact-form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    .contact-form input, .contact-form textarea {
-      padding: 0.75rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-family: 'Fira Code', monospace;
-      font-size: 0.9rem;
-      background: #fafafa;
-    }
-    .contact-form textarea {
-      grid-column: 1 / -1;
-      height: 100px;
-      resize: vertical;
-    }
-    .contact-form button {
-      grid-column: 1 / -1;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      background: var(--primary);
-      color: #fff;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.95rem;
-      transition: background 0.3s;
-    }
-    .contact-form button:hover { background: #2b6e31; }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: #666;
-      background: var(--card);
-      box-shadow: 0 -1px 3px var(--shadow);
-    }
-
-    /* Responsive */
-    @media (max-width: 992px) {
-      .nav-container { gap: 1rem; }
-    }
-    
-    @media (max-width: 768px) {
-      .nav-container { display: none; }
-      .nav-toggle { display: flex; }
-      .nav-content { justify-content: center; }
-      .contact-form { grid-template-columns: 1fr; }
-      .visual-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
   <!-- Navigation -->
   <nav>
     <div class="nav-content">
-      <div class="nav-toggle" id="navToggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
       <div class="nav-container">
         <a href="#home">Home</a>
         <a href="#about">About</a>
@@ -292,7 +35,7 @@
   </nav>
 
   <!-- Mobile Sidebar -->
-  <div class="sidebar" id="sidebar">
+  <div class="sidebar" id="sidebar" aria-hidden="true">
     <a href="#home">Home</a>
     <a href="#about">About</a>
     <a href="#development-plan">Dev Plan</a>
@@ -305,292 +48,244 @@
     <a href="#additional">More</a>
     <a href="#contact">Contact</a>
   </div>
-  
-  <!-- Overlay for sidebar -->
   <div class="overlay" id="overlay"></div>
 
-  <!-- Hero -->
+  <!-- Hero Section -->
   <header id="home">
-    <img src="profile.jpg" alt="Bader Othman" class="profile-img">
+    <img src="images/personal-photo.jpg" alt="Bader Othman" class="profile-img">
     <h1>Bader Othman</h1>
     <p>Results-driven Project &amp; Product Manager | B.S. Computer Science '25</p>
-    <a href="Bader_Othman_CV.pdf" class="btn" download>Download CV</a>
+    <a href="docs/Bader_Othman_CV.pdf" class="btn" download>Download CV</a>
   </header>
 
-  <!-- About -->
-  <section id="about" class="container">
-    <h2>Professional Summary &amp; Education</h2>
-    <p>Results-driven Project Manager / Product Manager with expertise in Agile frameworks, software development, and product lifecycle management.</p>
-    <p><strong>Education:</strong> B.S. Computer Science, Beirut Arab University (Expected June 2025)</p>
-  </section>
+  <main>
+    <!-- About Section -->
+    <section id="about" class="container">
+      <h2>Professional Summary &amp; Education</h2>
+      <p>Results-driven Project Manager / Product Manager with expertise in Agile frameworks, software development, and
+        product lifecycle management.</p>
+      <p><strong>Education:</strong> B.S. Computer Science, Beirut Arab University (Expected June 2025)</p>
+    </section>
 
-  <!-- Professional Development Plan -->
-  <section id="development-plan" class="container">
-    <h2>Professional Development Plan</h2>
-    <div class="card">
-      <h3>Career Goals</h3>
-      <ul>
-        <li><strong>Short-term (2025):</strong> Graduate with honors and secure PM role</li>
-        <li><strong>Mid-term (2027):</strong> Lead product teams in tech industry</li>
-        <li><strong>Long-term (2030):</strong> Director of Product Management</li>
-      </ul>
-      
-      <h3>Skills Development Roadmap</h3>
-      <ul>
-        <li>Complete PMP Certification (2026)</li>
-        <li>Advanced Agile training (2025)</li>
-        <li>Cloud Architecture specialization (2025-2026)</li>
-      </ul>
-      
-      <h3>Learning Strategy</h3>
-      <img src="learning-style.png" alt="Visual Learning Style" style="max-width:100%; margin-top:1rem;">
-      <p style="margin-top:1rem;">As a visual learner, I utilize diagrams, flowcharts, and structured frameworks to enhance my understanding and retention of complex concepts.</p>
-    </div>
-  </section>
-
-  <!-- Resume & Documents -->
-  <section id="resume" class="container">
-    <h2>Resume &amp; Job Documents</h2>
-    <div class="grid">
+    <!-- Development Plan Section -->
+    <section id="development-plan" class="container">
+      <h2>Professional Development Plan</h2>
       <div class="card">
-        <h3>Curriculum Vitae</h3>
-        <p><a href="Bader_Othman_CV.pdf" download>Download CV (PDF)</a></p>
+        <h3>Career Goals</h3>
+        <ul>
+          <li><strong>Short-term (2025):</strong> Graduate with honors and secure PM role</li>
+          <li><strong>Mid-term (2027):</strong> Lead product teams in tech industry</li>
+          <li><strong>Long-term (2030):</strong> Director of Product Management</li>
+        </ul>
+        <h3>Skills Development Roadmap</h3>
+        <ul>
+          <li>Complete PMP Certification (2026)</li>
+          <li>Advanced Agile training (2025)</li>
+          <li>Cloud Architecture specialization (2025-2026)</li>
+        </ul>
+        <h3>Learning Strategy</h3>
+        <img src="images/learning-style.png" alt="Visual Learning Style" class="learning-style">
+        <p>As a visual learner, I utilize diagrams, flowcharts, and structured frameworks to enhance my understanding
+          and retention of complex concepts.</p>
       </div>
-      <div class="card">
-        <h3>Cover Letter Sample</h3>
-        <p><a href="Bader_Othman_Cover_Letter.pdf">Download Cover Letter</a></p>
-      </div>
-      <div class="card">
-        <h3>Contact Info</h3>
-        <p>Email: <a href="mailto:baderothman25@gmail.com">baderothman25@gmail.com</a></p>
-        <p>Phone: +961 71 455 906</p>
-        <p>Tripoli, Lebanon</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Experience -->
-  <section id="experience" class="container">
-    <h2>Professional Experience</h2>
-    <div class="card">
-      <h3>Project Management Intern — Intelligile</h3>
-      <p>Beirut, Lebanon | Jun–Sep 2024</p>
-      <ul>
-        <li>Led 5+ Agile sprints—100% completion via backlog optimization</li>
-        <li>Managed SDLC docs (Charter, SRS, SDS) using Jira &amp; ClickUp</li>
-        <li>Reduced scope creep by 30% through risk mitigation</li>
-        <li>Facilitated standups &amp; retrospectives—cut blockers by 40%</li>
-        <li>Boosted efficiency 15% via stakeholder engagement</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Work-Based Learning Reflection -->
-  <section id="reflection" class="container">
-    <h2>Work-Based Learning Reflection</h2>
-    <div class="card">
-      <h3>Key Learnings from Professional Experience</h3>
-      <p>My internship at Intelligile fundamentally transformed my understanding of project management in real-world settings...</p>
-      
-      <h4>Communication in the Workplace</h4>
-      <div class="visual-grid">
-        <div class="visual-item">
-          <img src="good-communication.png" alt="Good Communication">
-          <p>Effective team communication</p>
+    <!-- Resume & Documents -->
+    <section id="resume" class="container">
+      <h2>Resume &amp; Job Documents</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Curriculum Vitae</h3>
+          <p><a href="docs/Bader_Othman_CV.pdf" download>Download CV (PDF)</a></p>
         </div>
-        <div class="visual-item">
-          <img src="poor-communication.png" alt="Poor Communication">
-          <p>Communication barriers to avoid</p>
+        <div class="card">
+          <h3>Cover Letter Sample</h3>
+          <p><a href="docs/Bader_Othman_Cover_Letter.pdf">Download Cover Letter</a></p>
+        </div>
+        <div class="card">
+          <h3>Contact Info</h3>
+          <p>Email: <a href="mailto:baderothman25@gmail.com">baderothman25@gmail.com</a></p>
+          <p>Phone: +961 71 455 906</p>
+          <p>Tripoli, Lebanon</p>
         </div>
       </div>
-      
-      <h4 style="margin-top:1.5rem;">Career Impact</h4>
-      <p>This experience solidified my decision to pursue product management as it combined my technical background with my passion for leadership...</p>
-      
-      <a href="work_reflection.pdf" class="btn" style="display:inline-block; margin-top:1rem;">Download Full Reflection</a>
-    </div>
-  </section>
+    </section>
 
-  <!-- Skills -->
-  <section id="skills" class="container">
-    <h2>Core &amp; Technical Skills</h2>
-    <div class="grid">
+    <!-- Professional Experience -->
+    <section id="experience" class="container">
+      <h2>Professional Experience</h2>
       <div class="card">
-        <h3>Project &amp; Product Management</h3>
+        <h3>Project Management Intern — Intelligile</h3>
+        <p>Beirut, Lebanon | Jun–Sep 2024</p>
         <ul>
-          <li>Roadmap &amp; Sprint Planning</li>
-          <li>Backlog Prioritization</li>
-          <li>Stakeholder Management</li>
+          <li>Led 5+ Agile sprints—100% completion via backlog optimization</li>
+          <li>Managed SDLC docs (Charter, SRS, SDS) using Jira & ClickUp</li>
+          <li>Reduced scope creep by 30% through risk mitigation</li>
+          <li>Facilitated standups & retrospectives—cut blockers by 40%</li>
+          <li>Boosted efficiency 15% via stakeholder engagement</li>
         </ul>
       </div>
-      <div class="card">
-        <h3>Agile &amp; Scrum</h3>
-        <p>Jira, Trello, ClickUp, Asana, Confluence</p>
-      </div>
-      <div class="card">
-        <h3>SDLC</h3>
-        <ul>
-          <li>Requirements Gathering</li>
-          <li>Testing &amp; Deployment</li>
-          <li>CI/CD Pipelines</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Cybersecurity</h3>
-        <ul>
-          <li>Threat Analysis</li>
-          <li>Risk Assessment</li>
-          <li>Security Protocols</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Programming</h3>
-        <p>HTML, CSS, Java, Python, C++, C#</p>
-      </div>
-      <div class="card">
-        <h3>Soft Skills</h3>
-        <ul>
-          <li>Team Leadership</li>
-          <li>Conflict Resolution</li>
-          <li>Presentation Skills</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Projects -->
-  <section id="projects" class="container">
-    <h2>Selected Projects</h2>
-    <div class="card">
-      <h3>AI-Driven Book Access Platform</h3>
-      <p>Led development of AI recommendation platform that increased user engagement by 25% through personalized suggestions.</p>
-      <p><strong>Technologies:</strong> Python, TensorFlow, React, Node.js</p>
-    </div>
-    <div class="card" style="margin-top:1.5rem;">
-      <h3>University Course Management System</h3>
-      <p>Designed and implemented a full-stack solution for course registration and management.</p>
-      <p><strong>Technologies:</strong> Java, Spring Boot, MySQL, React</p>
-    </div>
-  </section>
+    <!-- Reflection -->
+    <section id="reflection" class="container">
+      <h2>Work-Based Learning Reflection</h2>
+      <div class="card">
+        <h3>Key Learnings from Professional Experience</h3>
+        <p>My internship at Intelligile fundamentally transformed my understanding of project management in real-world
+          settings, teaching me the value of adaptive planning and stakeholder communication.</p>
+        <h4>Communication in the Workplace</h4>
+        <div class="visual-grid">
+          <div class="visual-item">
+            <img src="images/good-communication.jpg" alt="Good Communication">
+            <p>Effective team communication</p>
+          </div>
+          <div class="visual-item">
+            <img src="images/bad-communication.jpg" alt="Poor Communication">
+            <p>Communication barriers to avoid</p>
+          </div>
+        </div>
+        <h4>Career Impact</h4>
+        <p>This experience solidified my decision to pursue product management as it combined my technical background
+          with my passion for leadership, equipping me with skills to guide cross-functional teams.</p>
+        <a href="docs/work_reflection.pdf" class="btn">Download Full Reflection</a>
+      </div>
+    </section>
 
-  <!-- Certifications -->
-  <section id="certifications" class="container">
-    <h2>Certifications</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Technical Certifications</h3>
-        <ul>
-          <li>Ethical Hacking Foundation — Semicolon (Feb 2025)</li>
-          <li>Data Analysis Workshop — Khwarizme &amp; LASeR (Oct 2024)</li>
-          <li>IC3 Digital Literacy (Jul 2024)</li>
-          <li>Responsive Web Design — freeCodeCamp (Jun 2023)</li>
-          <li>JS Algorithms &amp; DS — freeCodeCamp (Jul 2023)</li>
-        </ul>
+    <!-- Skills -->
+    <section id="skills" class="container">
+      <h2>Core &amp; Technical Skills</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Project &amp; Product Management</h3>
+          <ul>
+            <li>Roadmap & Sprint Planning</li>
+            <li>Backlog Prioritization</li>
+            <li>Stakeholder Management</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Agile &amp; Scrum</h3>
+          <p>Jira, Trello, ClickUp, Asana, Confluence</p>
+        </div>
+        <div class="card">
+          <h3>SDLC</h3>
+          <ul>
+            <li>Requirements Gathering</li>
+            <li>Testing & Deployment</li>
+            <li>CI/CD Pipelines</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Cybersecurity</h3>
+          <ul>
+            <li>Threat Analysis</li>
+            <li>Risk Assessment</li>
+            <li>Security Protocols</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Programming</h3>
+          <p>HTML, CSS, Java, Python, C++, C#</p>
+        </div>
+        <div class="card">
+          <h3>Soft Skills</h3>
+          <ul>
+            <li>Team Leadership</li>
+            <li>Conflict Resolution</li>
+            <li>Presentation Skills</li>
+          </ul>
+        </div>
       </div>
-      <div class="card">
-        <h3>Professional Development</h3>
-        <ul>
-          <li>Agile Methodology Workshop (2024)</li>
-          <li>Leadership Training Program (2023)</li>
-          <li>Public Speaking Masterclass (2023)</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Additional Materials -->
-  <section id="additional" class="container">
-    <h2>Additional Professional Materials</h2>
-    <div class="grid">
+    <!-- Projects -->
+    <section id="projects" class="container">
+      <h2>Selected Projects</h2>
       <div class="card">
-        <h3>References</h3>
-        <p>Available upon request from:</p>
-        <ul>
-          <li>Intelligile Management</li>
-          <li>University Professors</li>
-          <li>Project Collaborators</li>
-        </ul>
+        <h3>AI-Driven Book Access Platform</h3>
+        <p>Led development of AI recommendation platform that increased user engagement by 25% through personalized
+          suggestions.</p>
+        <p><strong>Technologies:</strong> Python, TensorFlow, React, Node.js</p>
       </div>
       <div class="card">
-        <h3>Academic Projects</h3>
-        <p><a href="academic_portfolio.pdf">Download Academic Portfolio</a></p>
-        <p>Includes detailed case studies of university projects with code samples.</p>
+        <h3>University Course Management System</h3>
+        <p>Designed and implemented a full-stack solution for course registration and management.</p>
+        <p><strong>Technologies:</strong> Java, Spring Boot, MySQL, React</p>
       </div>
-      <div class="card">
-        <h3>LinkedIn Profile</h3>
-        <p><a href="https://www.linkedin.com/in/bader-othman-1a778127a/">View My LinkedIn Profile</a></p>
-        <p>Connect for professional networking and updates.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact" class="container">
-    <h2>Contact Me</h2>
-    <form class="contact-form" action="mailto:baderothman25@gmail.com" method="post" enctype="text/plain">
-      <input type="text" name="Name" placeholder="Your Name" required>
-      <input type="email" name="Email" placeholder="Your Email" required>
-      <textarea name="Message" placeholder="Your Message..." required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-    <p>Email: <a href="mailto:baderothman25@gmail.com">baderothman25@gmail.com</a> | Phone: +961 71 455 906</p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/bader-othman-1a778127a/">linkedin.com/in/bader-othman-1a778127a</a></p>
-  </section>
+    <!-- Certifications -->
+    <section id="certifications" class="container">
+      <h2>Certifications</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Technical Certifications</h3>
+          <ul>
+            <li>Ethical Hacking Foundation — Semicolon (Feb 2025)</li>
+            <li>Data Analysis Workshop — Khwarizme & LASeR (Oct 2024)</li>
+            <li>IC3 Digital Literacy (Jul 2024)</li>
+            <li>Responsive Web Design — freeCodeCamp (Jun 2023)</li>
+            <li>JS Algorithms & DS — freeCodeCamp (Jul 2023)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Professional Development</h3>
+          <ul>
+            <li>Agile Methodology Workshop (2024)</li>
+            <li>Leadership Training Program (2023)</li>
+            <li>Public Speaking Masterclass (2023)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Additional Materials -->
+    <section id="additional" class="container">
+      <h2>Additional Professional Materials</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>References</h3>
+          <p>Available upon request from:</p>
+          <ul>
+            <li>Intelligile Management</li>
+            <li>University Professors</li>
+            <li>Project Collaborators</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Academic Projects</h3>
+          <p><a href="docs/academic_portfolio.pdf">Download Academic Portfolio</a></p>
+          <p>Includes detailed case studies of university projects with code samples.</p>
+        </div>
+        <div class="card">
+          <h3>LinkedIn Profile</h3>
+          <p><a href="https://www.linkedin.com/in/bader-othman-1a778127a/">View My LinkedIn Profile</a></p>
+          <p>Connect for professional networking and updates.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="container">
+      <h2>Contact Me</h2>
+      <form class="contact-form" action="mailto:baderothman25@gmail.com" method="post" enctype="text/plain">
+        <input type="text" name="Name" placeholder="Your Name" required>
+        <input type="email" name="Email" placeholder="Your Email" required>
+        <textarea name="Message" placeholder="Your Message..." required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <p>Email: <a href="mailto:baderothman25@gmail.com">baderothman25@gmail.com</a> | Phone: +961 71 455 906</p>
+      <p>LinkedIn: <a
+          href="https://www.linkedin.com/in/bader-othman-1a778127a/">linkedin.com/in/bader-othman-1a778127a</a></p>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer>&copy; 2025 Bader Othman. All rights reserved.</footer>
 
-  <script>
-    const navToggle = document.getElementById('navToggle');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
-    
-    // Toggle sidebar and overlay
-    navToggle.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
-      overlay.classList.toggle('active');
-      navToggle.classList.toggle('open');
-    });
-    
-    // Close sidebar when clicking on overlay
-    overlay.addEventListener('click', () => {
-      sidebar.classList.remove('open');
-      overlay.classList.remove('active');
-      navToggle.classList.remove('open');
-    });
-    
-    // Close sidebar when a link is clicked
-    document.querySelectorAll('.sidebar a').forEach(link => {
-      link.addEventListener('click', () => {
-        sidebar.classList.remove('open');
-        overlay.classList.remove('active');
-        navToggle.classList.remove('open');
-      });
-    });
-    
-    // Close sidebar on window resize if it becomes unnecessary
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 768) {
-        sidebar.classList.remove('open');
-        overlay.classList.remove('active');
-        navToggle.classList.remove('open');
-      }
-    });
-    
-    // Smooth scrolling for all links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 80,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-  </script>
+  <!-- Main JavaScript -->
+  <script src="js/main.js" defer></script>
 </body>
+
 </html>
