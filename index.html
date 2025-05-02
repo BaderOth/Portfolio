@@ -5,6 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bader Othman | Career Portfolio</title>
+  <meta name="description"
+    content="Bader Othman's professional portfolio showcasing skills in project management, software development, and agile methodologies.">
+  <meta name="keywords" content="Project Manager, Product Manager, Computer Science, Portfolio, Agile, Scrum">
+  <meta name="author" content="Bader Othman">
+  <meta property="og:title" content="Bader Othman | Career Portfolio">
+  <meta property="og:description" content="Professional portfolio of Bader Othman, Project & Product Manager">
+  <meta property="og:type" content="website">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <!-- Main stylesheet -->
@@ -12,6 +19,9 @@
 </head>
 
 <body>
+  <!-- Skip to content link -->
+  <a href="#main" class="skip-link">Skip to content</a>
+
   <!-- Navigation -->
   <nav>
     <div class="nav-content">
@@ -57,18 +67,59 @@
     <p>Results-driven Project &amp; Product Manager | B.S. Computer Science '25</p>
   </header>
 
-  <main>
+  <main id="main" role="main" aria-label="Main content">
     <!-- About Section -->
-    <section id="about" class="container">
-      <h2>Professional Summary &amp; Education</h2>
+    <section id="about" class="container" aria-labelledby="about-heading">
+      <h2 id="about-heading">Professional Summary &amp; Education</h2>
       <p>Results-driven Project Manager / Product Manager with expertise in Agile frameworks, software development, and
         product lifecycle management.</p>
       <p><strong>Education:</strong> B.S. Computer Science, Beirut Arab University (Expected June 2025)</p>
     </section>
 
+    <!-- Big Five Personality Card -->
+    <div class="card personality-card">
+      <h3>Big Five Personality Traits</h3>
+      <div class="trait-container">
+        <div class="trait">
+          <span class="trait-name" data-tooltip="Creativity, curiosity, and preference for novelty">Openness</span>
+          <div class="trait-bar">
+            <div class="trait-level" style="width: 71%;" data-level="71%"></div>
+          </div>
+        </div>
+        <div class="trait">
+          <span class="trait-name"
+            data-tooltip="Organization, dependability, and self-discipline">Conscientiousness</span>
+          <div class="trait-bar">
+            <div class="trait-level" style="width: 90%;" data-level="90%"></div>
+          </div>
+        </div>
+        <div class="trait">
+          <span class="trait-name" data-tooltip="Sociability, talkativeness, and assertiveness">Extraversion</span>
+          <div class="trait-bar">
+            <div class="trait-level" style="width: 69%;" data-level="69%"></div>
+          </div>
+        </div>
+        <div class="trait">
+          <span class="trait-name" data-tooltip="Compassion, cooperativeness, and trust">Agreeableness</span>
+          <div class="trait-bar">
+            <div class="trait-level" style="width: 94%;" data-level="94%"></div>
+          </div>
+        </div>
+        <div class="trait">
+          <span class="trait-name" data-tooltip="Tendency toward emotional instability">Neuroticism</span>
+          <div class="trait-bar">
+            <div class="trait-level" style="width: 73%;" data-level="73%"></div>
+          </div>
+        </div>
+      </div>
+      <p class="trait-description">My personality profile shows high conscientiousness and openness, which aligns well
+        with project management roles requiring organization and creative problem-solving.</p>
+    </div>
+    </section>
+
     <!-- Development Plan Section -->
-    <section id="development-plan" class="container">
-      <h2>Professional Development Plan</h2>
+    <section id="development-plan" class="container" aria-labelledby="devplan-heading">
+      <h2 id="devplan-heading">Professional Development Plan</h2>
       <div class="grid">
         <div class="card">
           <h3>Career Goals & Skills Roadmap</h3>
@@ -96,8 +147,8 @@
     </section>
 
     <!-- Resume & Documents -->
-    <section id="resume" class="container">
-      <h2>Resume &amp; Job Documents</h2>
+    <section id="resume" class="container" aria-labelledby="resume-heading">
+      <h2 id="resume-heading">Resume &amp; Job Documents</h2>
       <div class="grid">
         <div class="card">
           <h3>Curriculum Vitae</h3>
@@ -119,8 +170,8 @@
     </section>
 
     <!-- Professional Experience -->
-    <section id="experience" class="container">
-      <h2>Professional Experience</h2>
+    <section id="experience" class="container" aria-labelledby="experience-heading">
+      <h2 id="experience-heading">Professional Experience</h2>
       <div class="card">
         <h3>Project Management Intern — Intelligile</h3>
         <p>Beirut, Lebanon | Jun–Sep 2024</p>
@@ -135,8 +186,8 @@
     </section>
 
     <!-- Reflection -->
-    <section id="reflection" class="container">
-      <h2>Work-Based Learning Reflection</h2>
+    <section id="reflection" class="container" aria-labelledby="reflection-heading">
+      <h2 id="reflection-heading">Work-Based Learning Reflection</h2>
       <div class="card">
         <h3>Key Learnings from Professional Experience</h3>
         <p>My internship at Intelligile fundamentally transformed my understanding of project management in real-world
@@ -148,19 +199,17 @@
             <p>Effective team communication</p>
           </div>
           <div class="visual-item">
-            <img src="images/bad-communication.jpg" alt="Illustration of communication barriers to avoid in a workplace">
+            <img src="images/bad-communication.jpg"
+              alt="Illustration of communication barriers to avoid in a workplace">
             <p>Communication barriers to avoid</p>
           </div>
-        </div>
-        <div style="text-align: center; margin-top: 20px;">
-          <a href="https://drive.google.com/file/d/1gmcQgzwMq7GRYH7tmNrOlRoEOzhJ_jP4/view?usp=drive_link" target="_blank" class="btn">View Full Comics</a>
         </div>
       </div>
     </section>
 
     <!-- Skills -->
-    <section id="skills" class="container">
-      <h2>Core &amp; Technical Skills</h2>
+    <section id="skills" class="container" aria-labelledby="skills-heading">
+      <h2 id="skills-heading">Core &amp; Technical Skills</h2>
       <div class="grid">
         <div class="card">
           <h3>Project &amp; Product Management</h3>
@@ -206,8 +255,8 @@
     </section>
 
     <!-- Projects -->
-    <section id="projects" class="container">
-      <h2>Selected Projects</h2>
+    <section id="projects" class="container" aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Selected Projects</h2>
       <div class="card">
         <h3>AI-Driven Book Access Platform</h3>
         <p>Led development of AI recommendation platform that increased user engagement by 25% through personalized
@@ -222,8 +271,8 @@
     </section>
 
     <!-- Certifications -->
-    <section id="certifications" class="container">
-      <h2>Certifications</h2>
+    <section id="certifications" class="container" aria-labelledby="certifications-heading">
+      <h2 id="certifications-heading">Certifications</h2>
       <div class="grid">
         <div class="card">
           <h3>Technical Certifications</h3>
@@ -247,8 +296,8 @@
     </section>
 
     <!-- Additional Materials -->
-    <section id="additional" class="container">
-      <h2>Additional Professional Materials</h2>
+    <section id="additional" class="container" aria-labelledby="additional-heading">
+      <h2 id="additional-heading">Additional Professional Materials</h2>
       <div class="grid">
         <div class="card">
           <h3>References</h3>
@@ -269,8 +318,8 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="container">
-      <h2>Contact Me</h2>
+    <section id="contact" class="container" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact Me</h2>
       <form class="contact-form" action="mailto:baderothman25@gmail.com" method="post" enctype="text/plain">
         <input type="text" name="Name" placeholder="Your Name" required>
         <input type="email" name="Email" placeholder="Your Email" required>
@@ -283,11 +332,10 @@
   <!-- Footer -->
   <footer>&copy; 2025 Bader Othman. All rights reserved.</footer>
 
-  <!-- Add this just before the closing </body> tag -->
+  <!-- Image Modal -->
   <div id="imageModal" class="modal">
     <span class="close">&times;</span>
     <img class="modal-content" id="modalImage">
-    <div id="caption"></div>
   </div>
 
   <!-- Main JavaScript -->

@@ -42,12 +42,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 entry.target.classList.add('animate');
             }
         });
+    }, {
+        threshold: 0.1
     });
 
     document.querySelectorAll('.card, .profile-img, .btn, .contact-form input, .contact-form textarea').forEach(el => {
         observer.observe(el);
     });
-z
+
+    // Personality traits animation
+    const traitObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const traitLevels = entry.target.querySelectorAll('.trait-level');
+                traitLevels.forEach(level => {
+                    const width = level.style.width;
+                    level.style.width = '0';
+                    setTimeout(() => {
+                        level.style.width = width;
+                    }, 100);
+                });
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
+
+    document.querySelectorAll('.personality-card').forEach(card => {
+        traitObserver.observe(card);
+    });
+
+    // Image modal
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImage');
     const captionText = document.getElementById('caption');
@@ -58,16 +83,48 @@ z
             modal.style.display = 'block';
             modalImg.src = img.src;
             captionText.innerHTML = img.alt;
+            document.body.style.overflow = 'hidden';
         });
     });
 
     closeBtn.addEventListener('click', () => {
         modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
     });
 
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
             modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
+    });
+
+    // Active nav link highlighting
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-container a, .sidebar a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            
+            if (pageYOffset >= (sectionTop - 100)) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Loading state
+    window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
     });
 });

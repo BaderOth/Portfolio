@@ -1,17 +1,25 @@
 :root {
     --primary: #3E8E41;
+    --primary-light: #5da85f;
+    --primary-dark: #2b6e31;
     --bg: #fafafa;
     --card: #ffffff;
     --text: #333333;
+    --text-light: #555;
     --shadow: rgba(0, 0, 0, 0.1);
     --animation-duration: 0.5s;
     --animation-ease: ease-in-out;
+    --transition: all 0.3s ease;
 }
 
 *,
 *::before,
 *::after {
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -35,10 +43,28 @@ body {
 a {
     color: var(--primary);
     text-decoration: none;
+    transition: var(--transition);
 }
 
 a:hover {
+    color: var(--primary-dark);
     text-decoration: underline;
+}
+
+/* Skip link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary);
+    color: white;
+    padding: 8px;
+    z-index: 100;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
 }
 
 /* Nav */
@@ -68,6 +94,13 @@ nav {
     margin: 0 auto;
 }
 
+.nav-container a.active,
+.sidebar a.active {
+    font-weight: bold;
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
 .nav-toggle {
     display: none;
     flex-direction: column;
@@ -78,6 +111,8 @@ nav {
     left: 1rem;
     top: 50%;
     transform: translateY(-50%);
+    background: transparent;
+    border: none;
 }
 
 .nav-toggle span {
@@ -87,6 +122,18 @@ nav {
     background: var(--text);
     transition: transform 0.3s, opacity 0.3s;
     animation: slideIn var(--animation-duration) var(--animation-ease);
+}
+
+.nav-toggle.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
 }
 
 @keyframes slideIn {
@@ -188,8 +235,34 @@ header p {
     border-radius: 4px;
     background: transparent;
     color: var(--primary);
-    transition: background 0.3s, color 0.3s;
+    transition: var(--transition);
     animation: bounce var(--animation-duration) var(--animation-ease);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--primary);
+    transition: var(--transition);
+    z-index: -1;
+}
+
+.btn:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn:hover::after {
+    width: 100%;
 }
 
 @keyframes bounce {
@@ -201,11 +274,6 @@ header p {
     }
 }
 
-.btn:hover {
-    background: var(--primary);
-    color: #fff;
-}
-
 /* Sections */
 .container {
     max-width: 960px;
@@ -213,7 +281,7 @@ header p {
     padding: 0 1rem;
 }
 
-section+section {
+section + section {
     margin-top: 3rem;
 }
 
@@ -245,8 +313,27 @@ section h2::after {
     padding: 1.5rem;
     border-radius: 6px;
     box-shadow: 0 2px 6px var(--shadow);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: var(--transition);
     animation: popUp var(--animation-duration) var(--animation-ease);
+    position: relative;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+    opacity: 0;
+    transition: var(--transition);
+    z-index: -1;
+    border-radius: 6px;
+}
+
+.card:hover::before {
+    opacity: 0.1;
 }
 
 @keyframes popUp {
@@ -293,6 +380,13 @@ section h2::after {
     max-width: 100%;
     border-radius: 4px;
     border: 1px solid #eee;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.visual-item img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px var(--shadow);
 }
 
 /* Contact Form */
@@ -312,6 +406,14 @@ section h2::after {
     font-size: 0.9rem;
     background: #fafafa;
     animation: fadeIn var(--animation-duration) var(--animation-ease);
+    transition: var(--transition);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(62, 142, 65, 0.2);
 }
 
 .contact-form textarea {
@@ -329,11 +431,11 @@ section h2::after {
     border-radius: 4px;
     cursor: pointer;
     font-size: 0.95rem;
-    transition: background 0.3s;
+    transition: var(--transition);
 }
 
 .contact-form button:hover {
-    background: #2b6e31;
+    background: var(--primary-dark);
 }
 
 /* Footer */
@@ -345,6 +447,89 @@ footer {
     background: var(--card);
     box-shadow: 0 -1px 3px var(--shadow);
     animation: fadeIn var(--animation-duration) var(--animation-ease);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    display: block;
+    margin: 60px auto;
+    max-width: 90%;
+    max-height: 80vh;
+    object-fit: contain;
+    animation: zoomIn 0.3s;
+}
+
+@keyframes zoomIn {
+    from {transform: scale(0.9); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
+
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    text-align: center;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: var(--primary-light);
+    text-decoration: none;
+}
+
+/* Loading state */
+body:not(.loaded) {
+    overflow: hidden;
+}
+
+body:not(.loaded)::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body:not(.loaded)::after {
+    content: 'Loading...';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    color: var(--primary);
+    font-size: 1.5rem;
 }
 
 /* Responsive */
@@ -371,3 +556,93 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+:root {
+    --primary: #3E8E41;
+    --primary-light: #5da85f;
+    --primary-dark: #2b6e31;
+    --bg: #fafafa;
+    --card: #ffffff;
+    --text: #333333;
+    --text-light: #555;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --animation-duration: 0.5s;
+    --animation-ease: ease-in-out;
+    --transition: all 0.3s ease;
+}
+
+/* ... [previous CSS rules remain exactly the same until the end] ... */
+
+/* Personality Traits Card */
+.personality-card {
+  margin-top: 2rem;
+}
+
+.trait-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.trait {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.trait-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+  position: relative;
+  display: inline-block;
+}
+
+.trait-name:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.trait-bar {
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.trait-level {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-light), var(--primary-dark));
+  border-radius: 4px;
+  position: relative;
+  transition: width 1s ease-in-out;
+}
+
+.trait-level::after {
+  content: attr(data-level);
+  position: absolute;
+  right: 5px;
+  top: -20px;
+  font-size: 0.7rem;
+  color: var(--primary-dark);
+}
+
+.trait-description {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+/* ... [rest of your existing CSS remains exactly the same] ... */
