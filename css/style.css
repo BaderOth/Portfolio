@@ -4,6 +4,8 @@
     --card: #ffffff;
     --text: #333333;
     --shadow: rgba(0, 0, 0, 0.1);
+    --animation-duration: 0.5s;
+    --animation-ease: ease-in-out;
 }
 
 *,
@@ -13,11 +15,21 @@
 }
 
 body {
-    margin: 0;
+    margin: 0;  
     font-family: 'Fira Code', monospace;
     background: var(--bg);
     color: var(--text);
     line-height: 1.5;
+    animation: fadeIn var(--animation-duration) var(--animation-ease);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 a {
@@ -74,6 +86,18 @@ nav {
     height: 3px;
     background: var(--text);
     transition: transform 0.3s, opacity 0.3s;
+    animation: slideIn var(--animation-duration) var(--animation-ease);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 /* Sidebar */
@@ -131,6 +155,18 @@ header {
     object-fit: cover;
     margin-bottom: 1rem;
     border: 3px solid var(--primary);
+    animation: rotateIn var(--animation-duration) var(--animation-ease);
+}
+
+@keyframes rotateIn {
+    from {
+        transform: rotate(-10deg);
+        opacity: 0;
+    }
+    to {
+        transform: rotate(0);
+        opacity: 1;
+    }
 }
 
 header h1 {
@@ -153,6 +189,16 @@ header p {
     background: transparent;
     color: var(--primary);
     transition: background 0.3s, color 0.3s;
+    animation: bounce var(--animation-duration) var(--animation-ease);
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
 }
 
 .btn:hover {
@@ -200,6 +246,18 @@ section h2::after {
     border-radius: 6px;
     box-shadow: 0 2px 6px var(--shadow);
     transition: transform 0.3s, box-shadow 0.3s;
+    animation: popUp var(--animation-duration) var(--animation-ease);
+}
+
+@keyframes popUp {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .card:hover {
@@ -253,6 +311,7 @@ section h2::after {
     font-family: 'Fira Code', monospace;
     font-size: 0.9rem;
     background: #fafafa;
+    animation: fadeIn var(--animation-duration) var(--animation-ease);
 }
 
 .contact-form textarea {
@@ -285,6 +344,7 @@ footer {
     color: #666;
     background: var(--card);
     box-shadow: 0 -1px 3px var(--shadow);
+    animation: fadeIn var(--animation-duration) var(--animation-ease);
 }
 
 /* Responsive */

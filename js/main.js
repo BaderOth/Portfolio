@@ -34,4 +34,40 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Intersection Observer for triggering animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            }
+        });
+    });
+
+    document.querySelectorAll('.card, .profile-img, .btn, .contact-form input, .contact-form textarea').forEach(el => {
+        observer.observe(el);
+    });
+z
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const captionText = document.getElementById('caption');
+    const closeBtn = document.querySelector('.modal .close');
+
+    document.querySelectorAll('.visual-item img').forEach(img => {
+        img.addEventListener('click', () => {
+            modal.style.display = 'block';
+            modalImg.src = img.src;
+            captionText.innerHTML = img.alt;
+        });
+    });
+
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
 });
