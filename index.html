@@ -163,7 +163,7 @@
         </div>
         <div class="card">
           <h3>Contact Info</h3>
-          <p>Email: <a href="mailto:baderothman25@gmail.com">baderothman25@gmail.com</a></p>
+          <p>Email: <a href="mailto:bader.k.othman@gmail.com">bader.k.othman@gmail.com</a></p>
           <p>Phone: +961 71 455 906</p>
           <p>Tripoli, Lebanon</p>
         </div>
@@ -321,12 +321,13 @@
     <!-- Contact -->
     <section id="contact" class="container" aria-labelledby="contact-heading">
       <h2 id="contact-heading">Contact Me</h2>
-      <form class="contact-form" action="mailto:baderothman25@gmail.com" method="post" enctype="text/plain">
-        <input type="text" name="Name" placeholder="Your Name" required>
-        <input type="email" name="Email" placeholder="Your Email" required>
-        <textarea name="Message" placeholder="Your Message..." required></textarea>
+      <form class="contact-form" id="contactForm">
+        <input type="text" name="user_name" placeholder="Your Name" required>
+        <input type="email" name="user_email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message..." required></textarea>
         <button type="submit">Send Message</button>
       </form>
+      <p id="formStatus" style="display: none;"></p>
     </section>
   </main>
 
@@ -340,7 +341,12 @@
   </div>
 
   <!-- Main JavaScript -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    emailjs.init('AmnyTa_x_bDUmGOB0');
+  </script>
   <script src="js/main.js" defer></script>
 </body>
 
 </html>
+``` 

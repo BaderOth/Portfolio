@@ -127,4 +127,26 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', () => {
         document.body.classList.add('loaded');
     });
+
+    // Contact form submission
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const formStatus = document.getElementById('formStatus');
+        formStatus.style.display = 'none';
+
+        emailjs.sendForm('service_et1qpvl', 'template_475p6u9', this, 'AmnyTa_x_bDUmGOB0')
+            .then(() => {
+                formStatus.style.display = 'block';
+                formStatus.textContent = 'Message sent successfully!';
+                formStatus.style.color = 'green';
+                this.reset();
+            })
+            .catch((error) => {
+                formStatus.style.display = 'block';
+                formStatus.textContent = 'Failed to send message. Please try again later.';
+                formStatus.style.color = 'red';
+                console.error('EmailJS Error:', error);
+            });
+    });
 });
