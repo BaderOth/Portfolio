@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 formStatus.style.display = 'block';
                 formStatus.textContent = 'Failed to send message. Please try again later.';
                 formStatus.style.color = 'red';
-                console.error('EmailJS Error:', error);
+                console.error('EmailJS Error:', error); // Logs the error details
             });
     });
 });
