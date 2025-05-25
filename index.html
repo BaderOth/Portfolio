@@ -13,7 +13,9 @@
   <meta property="og:description" content="Professional portfolio of Bader Othman, Project & Product Manager">
   <meta property="og:type" content="website">
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Main stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -29,93 +31,107 @@
         <span></span><span></span><span></span>
       </button>
       <div class="nav-container">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#development-plan">Dev Plan</a>
-        <a href="#resume">Resume</a>
-        <a href="#experience">Experience</a>
-        <a href="#reflection">Reflection</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#certifications">Certifications</a>
-        <a href="#additional">More</a>
-        <a href="#contact">Contact</a>
+        <a href="#home"><i class="fas fa-home"></i> Home</a>
+        <a href="#about"><i class="fas fa-user"></i> About</a>
+        <a href="#development-plan"><i class="fas fa-road"></i> Dev Plan</a>
+        <a href="#resume"><i class="fas fa-file-alt"></i> Resume</a>
+        <a href="#experience"><i class="fas fa-briefcase"></i> Experience</a>
+        <a href="#reflection"><i class="fas fa-lightbulb"></i> Reflection</a>
+        <a href="#skills"><i class="fas fa-code"></i> Skills</a>
+        <a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a>
+        <a href="#certifications"><i class="fas fa-certificate"></i> Certifications</a>
+        <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
       </div>
     </div>
   </nav>
 
   <!-- Mobile Sidebar -->
   <div class="sidebar" id="sidebar" aria-hidden="true">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#development-plan">Dev Plan</a>
-    <a href="#resume">Resume</a>
-    <a href="#experience">Experience</a>
-    <a href="#reflection">Reflection</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#certifications">Certifications</a>
-    <a href="#additional">More</a>
-    <a href="#contact">Contact</a>
+    <a href="#home"><i class="fas fa-home"></i> Home</a>
+    <a href="#about"><i class="fas fa-user"></i> About</a>
+    <a href="#development-plan"><i class="fas fa-road"></i> Dev Plan</a>
+    <a href="#resume"><i class="fas fa-file-alt"></i> Resume</a>
+    <a href="#experience"><i class="fas fa-briefcase"></i> Experience</a>
+    <a href="#reflection"><i class="fas fa-lightbulb"></i> Reflection</a>
+    <a href="#skills"><i class="fas fa-code"></i> Skills</a>
+    <a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a>
+    <a href="#certifications"><i class="fas fa-certificate"></i> Certifications</a>
+    <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
   </div>
   <div class="overlay" id="overlay"></div>
 
   <!-- Hero Section -->
   <header id="home">
-    <img src="images/personal-photo.jpg" alt="Bader Othman" class="profile-img">
-    <h1>Bader Othman</h1>
-    <p>Results-driven Project &amp; Product Manager | B.S. Computer Science '25</p>
+    <div class="hero-content">
+      <img src="images/personal-photo.jpg" alt="Bader Othman" class="profile-img">
+      <h1>Bader Othman</h1>
+      <p class="subtitle">Results-driven Project &amp; Product Manager | B.S. Computer Science '25</p>
+      <div class="social-links">
+        <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="mailto:bader.k.othman@gmail.com" aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </div>
   </header>
 
   <main id="main" role="main" aria-label="Main content">
     <!-- About Section -->
     <section id="about" class="container" aria-labelledby="about-heading">
       <h2 id="about-heading">Professional Summary &amp; Education</h2>
-      <p>Results-driven Project Manager / Product Manager with expertise in Agile frameworks, software development, and
-        product lifecycle management.</p>
-      <p><strong>Education:</strong> B.S. Computer Science, Beirut Arab University (Expected June 2025)</p>
+      <div class="card">
+        <p>Results-driven Project Manager / Product Manager with expertise in Agile frameworks, software development, and
+          product lifecycle management.</p>
+        <p><strong>Education:</strong> B.S. Computer Science, Beirut Arab University (Expected June 2025)</p>
+      </div>
     </section>
 
     <!-- Big Five Personality Card -->
-    <div class="card personality-card">
-      <h3>Big Five Personality Traits</h3>
-      <div class="trait-container">
-        <div class="trait">
-          <span class="trait-name" data-tooltip="Creativity, curiosity, and preference for novelty">Openness</span>
-          <div class="trait-bar">
-            <div class="trait-level" style="width: 71%;" data-level="71%"></div>
+    <section class="container">
+      <div class="card personality-card">
+        <h3><i class="fas fa-brain"></i> Big Five Personality Traits</h3>
+        <div class="trait-container">
+          <div class="trait">
+            <span class="trait-name" data-tooltip="Creativity, curiosity, and preference for novelty">Openness</span>
+            <div class="trait-bar">
+              <div class="trait-level" style="width: 71%;" data-level="71%"></div>
+            </div>
+          </div>
+          <div class="trait">
+            <span class="trait-name"
+              data-tooltip="Organization, dependability, and self-discipline">Conscientiousness</span>
+            <div class="trait-bar">
+              <div class="trait-level" style="width: 90%;" data-level="90%"></div>
+            </div>
+          </div>
+          <div class="trait">
+            <span class="trait-name" data-tooltip="Sociability, talkativeness, and assertiveness">Extraversion</span>
+            <div class="trait-bar">
+              <div class="trait-level" style="width: 69%;" data-level="69%"></div>
+            </div>
+          </div>
+          <div class="trait">
+            <span class="trait-name" data-tooltip="Compassion, cooperativeness, and trust">Agreeableness</span>
+            <div class="trait-bar">
+              <div class="trait-level" style="width: 94%;" data-level="94%"></div>
+            </div>
+          </div>
+          <div class="trait">
+            <span class="trait-name" data-tooltip="Tendency toward emotional instability">Neuroticism</span>
+            <div class="trait-bar">
+              <div class="trait-level" style="width: 73%;" data-level="73%"></div>
+            </div>
           </div>
         </div>
-        <div class="trait">
-          <span class="trait-name"
-            data-tooltip="Organization, dependability, and self-discipline">Conscientiousness</span>
-          <div class="trait-bar">
-            <div class="trait-level" style="width: 90%;" data-level="90%"></div>
-          </div>
-        </div>
-        <div class="trait">
-          <span class="trait-name" data-tooltip="Sociability, talkativeness, and assertiveness">Extraversion</span>
-          <div class="trait-bar">
-            <div class="trait-level" style="width: 69%;" data-level="69%"></div>
-          </div>
-        </div>
-        <div class="trait">
-          <span class="trait-name" data-tooltip="Compassion, cooperativeness, and trust">Agreeableness</span>
-          <div class="trait-bar">
-            <div class="trait-level" style="width: 94%;" data-level="94%"></div>
-          </div>
-        </div>
-        <div class="trait">
-          <span class="trait-name" data-tooltip="Tendency toward emotional instability">Neuroticism</span>
-          <div class="trait-bar">
-            <div class="trait-level" style="width: 73%;" data-level="73%"></div>
-          </div>
-        </div>
+        <p class="trait-description">My personality profile reflects high levels of conscientiousness and agreeableness,
+          suggesting I am well-suited for roles that require responsibility, collaboration, and attention to detail, such
+          as project management and teamwork-focused positions.</p>
       </div>
-      <p class="trait-description">My personality profile reflects high levels of conscientiousness and agreeableness,
-        suggesting I am well-suited for roles that require responsibility, collaboration, and attention to detail, such
-        as project management and teamwork-focused positions.</p>
-    </div>
     </section>
 
     <!-- Development Plan Section -->
@@ -123,7 +139,7 @@
       <h2 id="devplan-heading">Professional Development Plan</h2>
       <div class="grid">
         <div class="card">
-          <h3>Career Goals & Skills Roadmap</h3>
+          <h3><i class="fas fa-bullseye"></i> Career Goals & Skills Roadmap</h3>
           <ul>
             <li><strong>Long-term Goal:</strong> Secure a full-time position as a project manager in a tech company</li>
           </ul>
@@ -133,16 +149,18 @@
             <li><strong>Short-term Goal 3:</strong> Develop relevant technical skills</li>
             <li><strong>Short-term Goal 4:</strong> Create a tailored resume and apply for jobs</li>
           </ul>
-          <p><a href="https://drive.google.com/file/d/1_Tr5ZB_xCMhRpVedjIOv09HOOmECvC_1/view?usp=drive_link"
-              class="btn">Download Full Dev Plan</a></p>
+          <a href="https://drive.google.com/file/d/1_Tr5ZB_xCMhRpVedjIOv09HOOmECvC_1/view?usp=drive_link" class="btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-download"></i> Download Full Dev Plan
+          </a>
         </div>
         <div class="card">
-          <h3>Learning Strategy</h3>
+          <h3><i class="fas fa-graduation-cap"></i> Learning Strategy</h3>
           <p>As a learner who thrives through writing, doing, and speaking, I deepen my understanding by taking detailed
             notes, actively practicing hands-on tasks, and explaining ideas aloud to reinforce and clarify complex
             concepts.</p>
-          <p><a href="https://drive.google.com/file/d/1rdx6FJDyVspSXvvVyBGGV5qLsyX7ycKH/view?usp=drive_link"
-              class="btn">Download Learning Strategy</a></p>
+          <a href="https://drive.google.com/file/d/1rdx6FJDyVspSXvvVyBGGV5qLsyX7ycKH/view?usp=drive_link" class="btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-download"></i> Download Learning Strategy
+          </a>
         </div>
       </div>
     </section>
@@ -152,20 +170,22 @@
       <h2 id="resume-heading">Resume &amp; Job Documents</h2>
       <div class="grid">
         <div class="card">
-          <h3>Curriculum Vitae</h3>
-          <p><a href="https://drive.google.com/file/d/1y7_CtVOl98z02DbqeuXWkl-sj6EyTw_k/view?usp=drive_link"
-              download>Download CV (PDF)</a></p>
+          <h3><i class="fas fa-file-alt"></i> Curriculum Vitae</h3>
+          <a href="https://drive.google.com/file/d/1y7_CtVOl98z02DbqeuXWkl-sj6EyTw_k/view?usp=drive_link" class="btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-download"></i> Download CV (PDF)
+          </a>
         </div>
         <div class="card">
-          <h3>Cover Letter Sample</h3>
-          <p><a href="https://drive.google.com/file/d/1_Tr5ZB_xCMhRpVedjIOv09HOOmECvC_1/view?usp=drive_link">Download
-              Cover Letter</a></p>
+          <h3><i class="fas fa-envelope-open-text"></i> Cover Letter Sample</h3>
+          <a href="https://drive.google.com/file/d/1_Tr5ZB_xCMhRpVedjIOv09HOOmECvC_1/view?usp=drive_link" class="btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-download"></i> Download Cover Letter
+          </a>
         </div>
         <div class="card">
-          <h3>Contact Info</h3>
-          <p>Email: <a href="mailto:bader.k.othman@gmail.com">bader.k.othman@gmail.com</a></p>
-          <p>Phone: +961 71 455 906</p>
-          <p>Tripoli, Lebanon</p>
+          <h3><i class="fas fa-address-card"></i> Contact Info</h3>
+          <p><i class="fas fa-envelope"></i> <a href="mailto:bader.k.othman@gmail.com">bader.k.othman@gmail.com</a></p>
+          <p><i class="fas fa-phone"></i> +961 71 455 906</p>
+          <p><i class="fas fa-map-marker-alt"></i> Tripoli, Lebanon</p>
         </div>
       </div>
     </section>
@@ -174,37 +194,15 @@
     <section id="experience" class="container" aria-labelledby="experience-heading">
       <h2 id="experience-heading">Professional Experience</h2>
       <div class="card">
-        <h3>Project Management Intern — Intelligile</h3>
-        <p>Beirut, Lebanon | Jun–Sep 2024</p>
+        <h3><i class="fas fa-briefcase"></i> Project Management Intern — Intelligile</h3>
+        <p class="experience-date"><i class="fas fa-calendar-alt"></i> Beirut, Lebanon | Jun–Sep 2024</p>
         <ul>
-          <li>Led 5+ Agile sprints—100% completion via backlog optimization</li>
-          <li>Managed SDLC docs (Charter, SRS, SDS) using Jira & ClickUp</li>
-          <li>Reduced scope creep by 30% through risk mitigation</li>
-          <li>Facilitated standups & retrospectives—cut blockers by 40%</li>
-          <li>Boosted efficiency 15% via stakeholder engagement</li>
+          <li><i class="fas fa-check"></i> Led 5+ Agile sprints—100% completion via backlog optimization</li>
+          <li><i class="fas fa-check"></i> Managed SDLC docs (Charter, SRS, SDS) using Jira & ClickUp</li>
+          <li><i class="fas fa-check"></i> Reduced scope creep by 30% through risk mitigation</li>
+          <li><i class="fas fa-check"></i> Facilitated standups & retrospectives—cut blockers by 40%</li>
+          <li><i class="fas fa-check"></i> Boosted efficiency 15% via stakeholder engagement</li>
         </ul>
-      </div>
-    </section>
-
-    <!-- Reflection -->
-    <section id="reflection" class="container" aria-labelledby="reflection-heading">
-      <h2 id="reflection-heading">Work-Based Learning Reflection</h2>
-      <div class="card">
-        <h3>Key Learnings from Professional Experience</h3>
-        <p>My internship at Intelligile fundamentally transformed my understanding of project management in real-world
-          settings, teaching me the value of adaptive planning and stakeholder communication.</p>
-        <h4>Communication in the Workplace</h4>
-        <div class="visual-grid">
-          <div class="visual-item">
-            <img src="images/good-communication.jpg" alt="Illustration of effective team communication in a workplace">
-            <p>Effective team communication</p>
-          </div>
-          <div class="visual-item">
-            <img src="images/bad-communication.jpg"
-              alt="Illustration of communication barriers to avoid in a workplace">
-            <p>Communication barriers to avoid</p>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -213,43 +211,43 @@
       <h2 id="skills-heading">Core &amp; Technical Skills</h2>
       <div class="grid">
         <div class="card">
-          <h3>Project &amp; Product Management</h3>
+          <h3><i class="fas fa-tasks"></i> Project &amp; Product Management</h3>
           <ul>
-            <li>Roadmap & Sprint Planning</li>
-            <li>Backlog Prioritization</li>
-            <li>Stakeholder Management</li>
+            <li><i class="fas fa-check"></i> Roadmap & Sprint Planning</li>
+            <li><i class="fas fa-check"></i> Backlog Prioritization</li>
+            <li><i class="fas fa-check"></i> Stakeholder Management</li>
           </ul>
         </div>
         <div class="card">
-          <h3>Agile &amp; Scrum</h3>
-          <p>Jira, Trello, ClickUp, Asana, Confluence</p>
+          <h3><i class="fas fa-sync"></i> Agile &amp; Scrum</h3>
+          <p><i class="fas fa-tools"></i> Jira, Trello, ClickUp, Asana, Confluence</p>
         </div>
         <div class="card">
-          <h3>SDLC</h3>
+          <h3><i class="fas fa-code-branch"></i> SDLC</h3>
           <ul>
-            <li>Requirements Gathering</li>
-            <li>Testing & Deployment</li>
-            <li>CI/CD Pipelines</li>
+            <li><i class="fas fa-check"></i> Requirements Gathering</li>
+            <li><i class="fas fa-check"></i> Testing & Deployment</li>
+            <li><i class="fas fa-check"></i> CI/CD Pipelines</li>
           </ul>
         </div>
         <div class="card">
-          <h3>Cybersecurity</h3>
+          <h3><i class="fas fa-shield-alt"></i> Cybersecurity</h3>
           <ul>
-            <li>Threat Analysis</li>
-            <li>Risk Assessment</li>
-            <li>Security Protocols</li>
+            <li><i class="fas fa-check"></i> Threat Analysis</li>
+            <li><i class="fas fa-check"></i> Risk Assessment</li>
+            <li><i class="fas fa-check"></i> Security Protocols</li>
           </ul>
         </div>
         <div class="card">
-          <h3>Programming</h3>
-          <p>HTML, CSS, Java, Python, C++, C#</p>
+          <h3><i class="fas fa-laptop-code"></i> Programming</h3>
+          <p><i class="fas fa-code"></i> HTML, CSS, Java, Python, C++, C#</p>
         </div>
         <div class="card">
-          <h3>Soft Skills</h3>
+          <h3><i class="fas fa-users"></i> Soft Skills</h3>
           <ul>
-            <li>Team Leadership</li>
-            <li>Conflict Resolution</li>
-            <li>Presentation Skills</li>
+            <li><i class="fas fa-check"></i> Team Leadership</li>
+            <li><i class="fas fa-check"></i> Communication</li>
+            <li><i class="fas fa-check"></i> Problem Solving</li>
           </ul>
         </div>
       </div>
@@ -320,32 +318,48 @@
 
     <!-- Contact -->
     <section id="contact" class="container" aria-labelledby="contact-heading">
-      <h2 id="contact-heading">Contact Me</h2>
-      <form class="contact-form" id="contactForm">
-        <input type="text" name="user_name" placeholder="Your Name" required>
-        <input type="email" name="user_email" placeholder="Your Email" required>
-        <textarea name="message" placeholder="Your Message..." required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-      <p id="formStatus" style="display: none;"></p>
+      <h2 id="contact-heading">Get in Touch</h2>
+      <div class="card">
+        <form class="contact-form" action="#" method="POST">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+      </div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer>&copy; 2025 Bader Othman. All rights reserved.</footer>
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Bader Othman. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="mailto:bader.k.othman@gmail.com" aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
 
-  <!-- Image Modal -->
-  <div id="imageModal" class="modal">
-    <span class="close">&times;</span>
-    <img class="modal-content" id="modalImage">
-  </div>
-
-  <!-- Main JavaScript -->
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script>
-    emailjs.init('AmnyTa_x_bDUmGOB0');
-  </script>
-  <script src="js/main.js" defer></script>
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
 </body>
 
 </html>

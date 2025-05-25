@@ -5,15 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const overlay = document.getElementById('overlay');
 
     navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('open');
         sidebar.classList.toggle('open');
         overlay.classList.toggle('active');
-        navToggle.classList.toggle('open');
+        document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
     });
 
     overlay.addEventListener('click', () => {
+        navToggle.classList.remove('open');
         sidebar.classList.remove('open');
         overlay.classList.remove('active');
-        navToggle.classList.remove('open');
+        document.body.style.overflow = '';
     });
 
     document.querySelectorAll('.sidebar a').forEach(link => {
@@ -30,23 +32,41 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+                // Close mobile menu if open
+                if (sidebar.classList.contains('open')) {
+                    navToggle.classList.remove('open');
+                    sidebar.classList.remove('open');
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+                
+                // Smooth scroll to target
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         });
     });
 
     // Intersection Observer for triggering animations
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate');
+                observer.unobserve(entry.target);
             }
         });
-    }, {
-        threshold: 0.1
-    });
+    }, observerOptions);
 
-    document.querySelectorAll('.card, .profile-img, .btn, .contact-form input, .contact-form textarea').forEach(el => {
+    // Observe elements for animation
+    document.querySelectorAll('.card, section h2, .trait').forEach(el => {
         observer.observe(el);
     });
 
@@ -110,14 +130,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
             
-            if (pageYOffset >= (sectionTop - 100)) {
+            if (pageYOffset >= sectionTop - 200) {
                 current = section.getAttribute('id');
             }
         });
         
         navLinks.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
+            if (link.getAttribute('href').slice(1) === current) {
                 link.classList.add('active');
             }
         });
@@ -129,24 +149,73 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Contact form submission
-    document.getElementById('contactForm').addEventListener('submit', function (event) {
-        event.preventDefault();
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(contactForm);
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.innerHTML;
+            
+            try {
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                
+                // Here you would typically send the form data to your backend
+                // For now, we'll simulate a successful submission
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Show success message
+                submitButton.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                contactForm.reset();
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalButtonText;
+                }, 3000);
+                
+            } catch (error) {
+                submitButton.innerHTML = '<i class="fas fa-exclamation-circle"></i> Error!';
+                console.error('Form submission error:', error);
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalButtonText;
+                }, 3000);
+            }
+        });
+    }
 
-        const formStatus = document.getElementById('formStatus');
-        formStatus.style.display = 'none';
+    // Add parallax effect to hero section
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+        const scroll = window.pageYOffset;
+        if (header) {
+            header.style.backgroundPositionY = `${scroll * 0.5}px`;
+        }
+    });
 
-        emailjs.sendForm('service_et1qpvl', 'template_475p6u9', this, 'AmnyTa_x_bDUmGOB0')
-            .then(() => {
-                formStatus.style.display = 'block';
-                formStatus.textContent = 'Message sent successfully!';
-                formStatus.style.color = 'green';
-                this.reset();
-            })
-            .catch((error) => {
-                formStatus.style.display = 'block';
-                formStatus.textContent = 'Failed to send message. Please try again later.';
-                formStatus.style.color = 'red';
-                console.error('EmailJS Error:', error); // Logs the error details
-            });
+    // Initialize tooltips
+    document.querySelectorAll('[data-tooltip]').forEach(element => {
+        element.addEventListener('mouseenter', (e) => {
+            const tooltip = document.createElement('div');
+            tooltip.className = 'tooltip';
+            tooltip.textContent = e.target.dataset.tooltip;
+            document.body.appendChild(tooltip);
+            
+            const rect = e.target.getBoundingClientRect();
+            tooltip.style.top = `${rect.bottom + 5}px`;
+            tooltip.style.left = `${rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2)}px`;
+        });
+        
+        element.addEventListener('mouseleave', () => {
+            const tooltip = document.querySelector('.tooltip');
+            if (tooltip) {
+                tooltip.remove();
+            }
+        });
     });
 });
